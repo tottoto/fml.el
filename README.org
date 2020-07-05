@@ -1,1 +1,35 @@
 * Form markup language to generate HTML
+
+** Usage
+
+The form syntax conforms to [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Document-Object-Model.html][Document Object Model]].
+
+See [[file:fml-test.el]] for more examples.
+
+#+begin_src emacs-lisp
+  (fml-multiline
+   '(html ((lang . "en"))
+          (head nil
+                (meta ((charset . "UTF-8")))
+                (title nil "The TITLE"))
+          (body nil
+                (div ((class . "container"))
+                     "CONTENTS"
+                     (div ((id . "foo") (class . "inner-container"))
+                          "NESTED CONTENTS")))))
+#+end_src
+
+#+begin_src html
+  <html lang=\"en\">
+  <head>
+  <meta charset=\"UTF-8\">
+  <title>The TITLE</title>
+  </head>
+  <body>
+  <div class=\"container\">
+  CONTENTS
+  <div id=\"foo\" class=\"inner-container\">NESTED CONTENTS</div>
+  </div>
+  </body>
+  </html>
+#+end_src
