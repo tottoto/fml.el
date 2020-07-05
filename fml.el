@@ -55,6 +55,7 @@
 (defun fml-end-tag (element)
   (format "</%s>" element))
 
+;;;###autoload
 (defun fml (form)
   (cond
    ((stringp form) form)
@@ -73,10 +74,12 @@
                           "\n" ""))
           (mapconcat 'identity `(,start-tag ,inner ,end-tag) delim)))))))
 
+;;;###autoload
 (defun fml-oneline (form)
   (let ((fml-enable-multiline nil))
     (fml form)))
 
+;;;###autoload
 (defun fml-multiline (form)
   (let ((fml-enable-multiline t))
     (fml form)))
