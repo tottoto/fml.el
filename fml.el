@@ -42,10 +42,10 @@
                (contents (nthcdr 2 form))
                (delim (if fml-enable-multiline "\n" ""))
                (inner (mapconcat 'fml contents delim)))
-          (if (and fml-enable-multiline
-                   (string-match (rx "<") inner))
-              (mapconcat 'identity (list start-tag inner end-tag) "\n")
-            (concat start-tag inner end-tag))))))))
+          (setq delim (if (and fml-enable-multiline
+                               (string-match (rx "<") inner))
+                          "\n" ""))
+          (mapconcat 'identity `(,start-tag ,inner ,end-tag) delim)))))))
 
 (defun fml-oneline (form)
   (let ((fml-enable-multiline nil))
