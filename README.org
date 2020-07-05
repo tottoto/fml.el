@@ -1,5 +1,15 @@
 * Form markup language to generate HTML
 
+** Installation
+
+This package is not a member of melpa.
+It is easy to use [[https://github.com/quelpa/quelpa-use-package][quelpa-use-package]].
+
+#+begin_src emacs-lisp
+  (use-package fml
+    :quelpa (fml :fetcher github :repo "tottoto/fml.el"))
+#+end_src
+
 ** Usage
 
 The form syntax conforms to [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Document-Object-Model.html][Document Object Model]].
