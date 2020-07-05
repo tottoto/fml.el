@@ -9,6 +9,10 @@
   "List of empty element."
   :type 'sexp)
 
+(defcustom fml-enable-multiline t
+  "Flag to enable multiline."
+  :type 'symbol)
+
 (defun fml-translate-attr (attr)
   (let ((key (symbol-name (car attr)))
         (value (cdr attr)))
@@ -36,7 +40,19 @@
           start-tag
         (let* ((end-tag (fml-end-tag element))
                (contents (nthcdr 2 form))
-               (inner (mapconcat 'fml contents "")))
-          (concat start-tag inner end-tag)))))))
+               (delim (if fml-enable-multiline "\n" ""))
+               (inner (mapconcat 'fml contents delim)))
+          (if (and fml-enable-multiline
+                   (string-match (rx "<") inner))
+              (mapconcat 'identity (list start-tag inner end-tag) "\n")
+            (concat start-tag inner end-tag))))))))
+
+(defun fml-oneline (form)
+  (let ((fml-enable-multiline nil))
+    (fml form)))
+
+(defun fml-multiline (form)
+  (let ((fml-enable-multiline t))
+    (fml form)))
 
 (provide 'fml)
