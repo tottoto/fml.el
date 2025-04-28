@@ -2,12 +2,10 @@
 
 ** Installation
 
-This package is not a member of melpa.
-It is easy to use [[https://github.com/quelpa/quelpa-use-package][quelpa-use-package]].
-
 #+begin_src emacs-lisp
   (use-package fml
-    :quelpa (fml :fetcher github :repo "tottoto/fml.el"))
+    :vc (:url "https://github.com/tottoto/fml.el.git"
+         :rev :newest))
 #+end_src
 
 ** Usage
